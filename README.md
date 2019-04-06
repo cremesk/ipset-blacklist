@@ -10,7 +10,7 @@ The ipset command doesn't work under OpenVZ. It works fine on dedicated and full
 - 10/17/2018: Merged Shellcheck PR from [@extremeshok](https://github.com/extremeshok)
 - 05/10/2018: Added regex filter improvements from [@sbujam](https://github.com/sbujam)
 - 08/15/2017: Filtering default gateway and multicast ranges
-- 01/20/2017: Ignoring "Service unavailable" HTTP status code, removed IGNORE_CURL_ERRORS 
+- 01/20/2017: Ignoring "Service unavailable" HTTP status code, removed IGNORE_CURL_ERRORS
 - 11/04/2016: Documentation added to show how to prevent fail2ban from inserting its rules above the ipset-blacklist when restarting the fail2ban service
 - 11/11/2015: Merged all suggestions from [@drzraf](https://github.com/drzraf)
 - 10/24/2015: Outsourced the entire configuration in it's own configuration file. Makes updating the shell script way easier!
@@ -83,13 +83,13 @@ If you for some reason want to ban all IP addresses from a certain country, have
 
 ## Troubleshooting
 
-```Set blacklist-tmp is full, maxelem 65536 reached```   
-Increase the ipset list capacity. For instance, if you want to store up to 80,000 entries, add these lines to your ipset-blacklist.conf:  
+```Set blacklist-tmp is full, maxelem 65536 reached```
+Increase the ipset list capacity. For instance, if you want to store up to 80,000 entries, add these lines to your ipset-blacklist.conf:
 ```
 MAXELEM=80000
 ```
 
-```ipset v6.20.1: Error in line 2: Set cannot be created: set with the same name already exists```   
+```ipset v6.20.1: Error in line 2: Set cannot be created: set with the same name already exists```
 If this happens after changing the MAXELEM parameter: ipset seems to be unable to recreate an exising list with a different size. You will have to solve this manually by deleting and inserting the blacklist in ipset and iptables. A reboot will help as well and may be easier. You may want to remove /etc/ipset-blacklist/ip-blacklist.restore too because it may still contain the old MAXELEM size.
 
 ```ipset v6.12: No command specified: unknown argument -file```
