@@ -17,11 +17,11 @@ The ipset command doesn't work under OpenVZ. It works fine on dedicated and full
 - 10/22/2015: Changed the documentation, the script should be put in /usr/local/sbin not /usr/local/bin
 
 ## Quick start for Debian/Ubuntu based installations
-1. wget -O /usr/local/sbin/update-blacklist.sh https://raw.githubusercontent.com/cremesk/ipset-blacklist/master/update-blacklist.sh
-2. chmod +x /usr/local/sbin/update-blacklist.sh
-2. mkdir -p /etc/ipset-blacklist ; wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/cremesk/ipset-blacklist/master/ipset-blacklist.conf
-2. Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to /etc/ipset-blacklist/ip-blacklist.restore
-3. ```apt-get install ipset```
+1. `wget -O /usr/local/sbin/update-blacklist.sh https://raw.githubusercontent.com/cremesk/ipset-blacklist/master/update-blacklist.sh`
+2. `chmod +x /usr/local/sbin/update-blacklist.sh`
+2. `mkdir -p /etc/ipset-blacklist ; wget -O /etc/ipset-blacklist/ipset-blacklist.conf https://raw.githubusercontent.com/cremesk/ipset-blacklist/master/ipset-blacklist.conf`
+2. Modify ipset-blacklist.conf according to your needs. Per default, the blacklisted IP addresses will be saved to `/etc/ipset-blacklist/ip-blacklist.restore`
+3. `apt-get install ipset`
 4. Create the ipset blacklist and insert it into your iptables input filter (see below). After proper testing, make sure to persist it in your firewall script or similar or the rules will be lost after the next reboot.
 5. Auto-update the blacklist using a cron job
 
@@ -51,7 +51,7 @@ MAILTO=root
 Using iptables, you can check how many packets got dropped using the blacklist:
 
 ```
-drfalken@wopr:~# iptables -L INPUT -v --line-numbers
+$ iptables -L INPUT -v --line-numbers
 Chain INPUT (policy DROP 60 packets, 17733 bytes)
 num   pkts bytes target            prot opt in  out source   destination
 1       15  1349 DROP              all  --  any any anywhere anywhere     match-set blacklist src
